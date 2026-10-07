@@ -16,6 +16,10 @@ Maintained by [Guilherme Cavalcanti](https://github.com/lughlammas) within **ARB
 - [Prompts](prompts/): briefing, product adaptation and handoff templates.
 - [Decisions](DECISIONS.md): the kit's decision record.
 
+## Case studies
+
+- [GitHub & Project Estate Consolidation](case-studies/github-project-estate-consolidation.md): self-directed audit, classification and consolidation of my own repositories and workspace (not paid client work).
+
 ## Use the kit
 
 1. Define the problem, constraints and acceptance criteria with the [briefing](prompts/briefing.md).
