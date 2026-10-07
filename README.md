@@ -15,6 +15,7 @@ Maintained by [Guilherme Cavalcanti](https://github.com/lughlammas) within **ARB
 - [Playbook](docs/PLAYBOOK.md): briefing, scope, implementation, QA and delivery sequence.
 - [Prompts](prompts/): briefing, product adaptation and handoff templates.
 - [Decisions](DECISIONS.md): the kit's decision record.
+- [English overview](docs/HUMAN_DIRECTED_AI_WORKFLOW.md): a concise English summary of the method.
 
 ## Case studies
 
