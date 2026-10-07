@@ -1,49 +1,38 @@
-# AI Coordinator Portfolio — Starter Kit
+# AI Coordinator Portfolio
 
-Kit de partida para **coordenar IAs** na construção de produtos digitais: playbooks, papéis de agentes, handoffs e prompts prontos para colar.
+Documented methodology for human-directed AI coordination across product, implementation, QA, handoffs, and documentation.
 
-Complementa:
+**Contents:** playbooks, role definitions, prompts, acceptance criteria and decision records. This is a documentation starter kit; it contains no executable agent runtime, automated scheduler or multi-agent orchestration service.
 
-| Recurso | URL | Papel |
-|---------|-----|-------|
-| Portfólio ao vivo | [lughlammas.github.io](https://lughlammas.github.io/) | Vitrine e narrativa do coordenador |
-| Template de produto | [comercial-template](https://github.com/lughlammas/comercial-template) | Base clonável para ofertas comerciais |
-| **Este repositório** | [ai-coordinator-portfolio](https://github.com/lughlammas/ai-coordinator-portfolio) | Metodologia: como orquestrar agentes |
+**Status:** methodology and reusable documents. The opening guide is English-first; the detailed playbooks and prompt templates are currently in Brazilian Portuguese. No automated execution or benchmark is claimed.
 
-> **Importante:** este kit **não altera** o `comercial-template`. Use-o apenas como referência ou clone; a customização acontece em repositórios derivados.
+Maintained by [Guilherme Cavalcanti](https://github.com/lughlammas) within **ARBOCK LABS**, an independent software and applied-AI lab currently being structured.
 
-## O que você encontra aqui
+## Read the methodology
 
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — fluxo Coordenador → agentes → repos → cliente
-- [`docs/ROLES.md`](docs/ROLES.md) — papéis, responsabilidades e handoffs
-- [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md) — do briefing à oferta
-- [`prompts/`](prompts/) — prompts copy-paste (briefing, fork de produto, handoff)
-- [`DECISIONS.md`](DECISIONS.md) — registro de decisões do kit
+- [Architecture](docs/ARCHITECTURE.md): coordinator, roles, repositories and delivery flow.
+- [Roles](docs/ROLES.md): responsibilities, acceptance and handoff boundaries.
+- [Playbook](docs/PLAYBOOK.md): briefing, scope, implementation, QA and delivery sequence.
+- [Prompts](prompts/): briefing, product adaptation and handoff templates.
+- [Decisions](DECISIONS.md): the kit's decision record.
 
-## Quick start para o coordenador
+## Use the kit
 
-1. **Leia o contexto do cliente** e abra [`prompts/briefing.md`](prompts/briefing.md). Preencha o briefing com o agente de produto.
-2. **Divida o trabalho** com [`docs/ROLES.md`](docs/ROLES.md): produto, código, QA, docs, comercial.
-3. **Clone o template** (sem modificar o original):
-   ```bash
-   gh repo create NOME-DO-PRODUTO --template lughlammas/comercial-template --public
-   # ou: git clone + criar repo novo a partir da cópia
-   ```
-4. **Customize** o fork com [`prompts/fork-product.md`](prompts/fork-product.md).
-5. **Handoffs** entre agentes com [`prompts/handoff.md`](prompts/handoff.md).
-6. **Feche com README de venda** e oferta — ver etapa final em [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
+1. Define the problem, constraints and acceptance criteria with the [briefing](prompts/briefing.md).
+2. Assign responsibilities using the [role definitions](docs/ROLES.md).
+3. Work in the appropriate product repository, with changes reviewed under human direction.
+4. Record deliverables, unresolved issues and decisions in each [handoff](prompts/handoff.md).
+5. Inspect implementation, check acceptance criteria and document the delivered scope and limitations.
 
-## Princípios
+The kit defines a process for using tools and agents. It does not launch them, execute tests, or establish that a particular product passed QA. Report only checks actually performed and results actually observed.
 
-- Coordenação humana (ou humano + IA) no centro; agentes especializados nas pontas.
-- Sem métricas inventadas: documente o que foi feito, não o que “parece bom”.
-- Template comercial permanece estável; produtos nascem em repos próprios.
-- Português (PT-BR) como idioma padrão dos artefatos deste kit.
+## Related public work
 
-## Licença
+- [comercial-template](https://github.com/lughlammas/comercial-template): application implementation used as a customization example in the playbooks.
+- [Portfolio](https://lughlammas.github.io/): professional presentation.
 
-MIT — veja [`LICENSE`](LICENSE).
+Using this kit does not modify those repositories. Adapt the prompts to the project and decide repository visibility according to its ownership and IP requirements.
 
----
+## License
 
-Mantido por [Guilherme Cavalcanti (lughlammas)](https://github.com/lughlammas) · Homepage: [lughlammas.github.io](https://lughlammas.github.io/)
+[MIT](LICENSE). Original playbooks, role definitions and decision history are preserved.
