@@ -1,72 +1,60 @@
 # Human-Directed AI Workflow — English Overview
 
-A concise English summary of the methodology in this repository. It describes **human-directed AI-assisted development**: a person sets direction, assigns work to AI agents and people, checks the results and remains accountable for what ships.
+A concise English summary of the methodology in this repository. It describes **human-directed AI-assisted development**: a person sets the objective, assigns work to AI agents and people, inspects the results and remains accountable for what ships.
 
 This is a written method made of roles, sequences, templates and rules. It is **not** autonomous infrastructure. The repository contains no agent runtime, scheduler or orchestration service, and it does not run anything by itself.
 
-The detailed source documents are in Brazilian Portuguese, and this overview follows them closely: [ARCHITECTURE](ARCHITECTURE.md), [ROLES](ROLES.md), [PLAYBOOK](PLAYBOOK.md), [prompts/](../prompts/) and [DECISIONS](../DECISIONS.md).
+The detailed source documents are in Brazilian Portuguese, and this overview follows them closely: [ARCHITECTURE](ARCHITECTURE.md), [ROLES](ROLES.md), [PLAYBOOK](PLAYBOOK.md), [prompts/](../prompts/) and [DECISIONS](../DECISIONS.md). For an applied example, see the [GitHub & Project Estate Consolidation case study](../case-studies/github-project-estate-consolidation.md), a real self-directed repository audit that is not client work.
 
-## 1. Who is in charge
+## 1. Human objective and authority
 
-The **Coordinator** runs the cycle. The source docs describe this role as "human ± AI", with a human always directing.
+- The **Coordinator** owns the cycle: the briefing, splitting the work, acceptance between stages, and alignment with the client or stakeholder. The source docs describe the role as "human ± AI", with a human always directing.
+- The Coordinator receives the request and every blocker or decision that needs escalating. The Coordinator delivers the work plan, the decision record and final acceptance.
+- Repository visibility is decided according to the project's ownership and IP requirements.
+- In practice (case study): irreversible actions stayed behind explicit owner approval. These were visibility, licences, deletions, history rewrites and account renaming.
 
-- **Responsibilities:** briefing, splitting the work, acceptance between stages, and alignment with the client or stakeholder.
-- **Receives:** the request, plus questions and blockers from any agent.
-- **Delivers:** the work plan, the decision record and final acceptance.
-- **Does not, as a rule,** implement a whole feature alone when specialised roles are available.
+## 2. Problem decomposition
 
-## 2. Roles
+Following the [briefing template](../prompts/briefing.md) and [PLAYBOOK](PLAYBOOK.md) steps 1–2:
 
-Each role can be filled by a person, an AI under supervision, or a combination ([ROLES](ROLES.md)).
+- Capture the problem, audience, deadline, technical and business constraints, what already exists, and an **observable** definition of success.
+- The Coordinator checks that the scope fits one short cycle, either an MVP or a clear slice.
+- The Product role restates the problem and value proposition, lists scope **in** and **out**, and writes **5–10 verifiable pass/fail acceptance criteria**, plus risks and open questions.
+- **Output:** an approved briefing, a spec and a prioritised backlog with an owner for each item.
 
-| Role | Responsible for | Hands off |
-|---|---|---|
-| Product | Problem, audience, scope, acceptance criteria, priorities | Spec + acceptance criteria → Code; value proposition (no invented metrics) → Commercial |
-| Code | Implementation in a repository derived from the agreed base | Branch/PR + what to test + environments → QA |
-| QA | Checking acceptance criteria, obvious regressions, release checklist | Reproducible bugs → Code; what is stable → Docs |
-| Docs | Technical README, quick start, product README ("clear, without false hype") | Base text for the offer and FAQ → Commercial |
-| Commercial | Offer, positioning, next steps; objections answered with facts | Package ready to present → Coordinator |
+## 3. Agent and tool assignment
 
-Any role escalates a blocker or a decision it needs to the Coordinator.
+Each role can be filled by a person, an AI under supervision, or a combination ([ROLES](ROLES.md)). The Coordinator assigns Code, QA, Docs and Commercial according to workload, and does not, as a rule, implement a whole feature alone when specialised roles are available.
 
-## 3. Delivery sequence
+| Role | Responsible for |
+|---|---|
+| Product | Problem, audience, scope, acceptance criteria, priorities |
+| Code | Implementation in a repository derived from the agreed base |
+| QA | Acceptance criteria, obvious regressions, release checklist |
+| Docs | Technical README, quick start, product README |
+| Commercial | Offer, positioning, next steps; objections answered with facts |
 
-From the [PLAYBOOK](PLAYBOOK.md):
+## 4. Parallel work where useful
 
-1. **Briefing.** Collect the problem, audience, deadline, constraints and the observable definition of success. The Coordinator checks that the scope fits one short cycle.
-2. **Split.** Product turns the briefing into a spec with acceptance criteria. The Coordinator assigns owners and records decisions in the product's own repository.
-3. **Derive the base.** Create a new repository from the template. The canonical template is never committed to as part of this flow.
-4. **Customise.** Code implements the spec. QA joins early with smoke checks against the acceptance criteria, and new scope goes back to Product and the Coordinator.
-5. **Product README.** Docs and Commercial write a value-oriented README: what it is, who it is for, how to run or demo it, and next steps.
-6. **Offer and handoff.** The Coordinator presents the delivered scope, what is deferred, and links, then records the feedback.
+- The default order is Product → Code → QA → Docs → Commercial. The architecture shows the Coordinator assigning to all roles, and the playbook brings QA in **early**, with smoke checks against the acceptance criteria while implementation is under way.
+- The source docs do not prescribe a parallel schedule. Parallelism is a Coordinator decision based on workload.
+- In practice (case study), two agent sessions worked on the same repositories at once and one release branch ran into a conflict. The working rule that came out of it: fetch before changing anything, never overwrite newer work, and stop on a conflict instead of forcing it.
 
-The usual order is Product → Code → QA → Docs → Commercial.
+## 5. Handoff structure
 
-## 4. Briefing and acceptance criteria
-
-The [briefing template](../prompts/briefing.md) asks the Product role to:
-
-- restate the problem and value proposition;
-- list what is **in** and **out** of scope for the cycle;
-- write **5–10 verifiable pass/fail acceptance criteria**;
-- propose the handoff order;
-- list risks and open questions for the Coordinator.
-
-## 5. Handoffs
-
-Every hand-over uses the same [handoff template](../prompts/handoff.md), which records:
+Every hand-over uses the [handoff template](../prompts/handoff.md), which records:
 
 - from/to, cycle and date;
 - the goal of the handoff;
 - links to the spec, the product repository, the PR/branch and relevant decisions;
 - what is delivered;
-- **known pending items**;
+- known pending items;
 - **the acceptance criteria to validate now**;
 - **how to verify** (commands, steps, environments);
 - blockers or questions for the Coordinator;
 - the suggested next step.
 
-Each pair of roles has a minimum artifact to pass on, defined in the handoff matrix in [ROLES](ROLES.md):
+Each pair of roles has a minimum artifact to pass on ([ROLES](ROLES.md)):
 
 | From → To | Artifact |
 |---|---|
@@ -76,35 +64,41 @@ Each pair of roles has a minimum artifact to pass on, defined in the handoff mat
 | QA → Docs | Stable scope |
 | Docs → Commercial | Product README + FAQ |
 | Commercial → Coordinator | Offer + links |
+| Any → Coordinator | Blocker or decision needed |
 
-## 6. Verification
+## 6. Inspection and rejection
 
-- QA checks the acceptance criteria and the release checklist, then reports pass/fail and known risks.
-- The expected output of implementation is a reviewed PR with a green QA checklist, or documented risks ([PLAYBOOK](PLAYBOOK.md), step 4). Acceptance between stages belongs to the Coordinator.
+- QA sends **reproducible bugs** back to Code.
+- Work outside the acceptance criteria is not accepted. The [code prompt](../prompts/fork-product.md) forbids inventing features beyond the criteria, and new scope or doubts go back to Product and the Coordinator.
+- The Coordinator inspects the implementation against the acceptance criteria before accepting a stage.
+- In practice (case study), ambiguous project identities and branch conflicts were treated as stop conditions: work halted on that item and the problem was reported, without guessing or forcing.
+
+## 7. Testing / QA
+
+- QA verifies the acceptance criteria, checks for obvious regressions and runs the release checklist. It delivers a pass/bug report with known risks.
+- The expected output of implementation is a reviewed PR with a green QA checklist, or documented risks ([PLAYBOOK](PLAYBOOK.md), step 4).
 - **Report only checks actually performed and results actually observed.** The kit defines a process; it does not establish that any particular product passed QA.
 
-## 7. Decision records
+## 8. Documentation
 
-- Decisions that affect scope or the base template are recorded in a `DECISIONS.md` in the product's repository, not in the template.
-- This kit keeps its own [decision record](../DECISIONS.md) for its scope, language and tone, and licence. Each entry records context, decision, consequences and status.
-
-## 8. Guardrails
-
+- Code documents the minimal setup in the technical README, without false metrics.
+- Docs writes the technical README, a quick start and a product README covering what it is, who it is for, how to run or demo it, and next steps. The source docs ask for these to be "clear, without false hype".
+- Documentation lives in the product repository, never in the canonical template.
 - No invented metrics, testimonials, results or case studies, in any role.
-- The canonical template is read-only; customisation happens only in derived repositories.
-- No features outside the acceptance criteria. New scope goes back to Product and the Coordinator.
-- Repository visibility is decided according to the project's ownership and IP requirements.
 
-## 9. Applied example
+## 9. Version control
 
-The [GitHub & Project Estate Consolidation case study](../case-studies/github-project-estate-consolidation.md) applies the same principles to a real, self-directed repository audit. It is not client work. In that case:
+- Each product starts as a **new repository derived from the template**, for example with `gh repo create --template`. The canonical template is never committed to as part of this flow.
+- Code works in small commits with clear messages, then hands over through a branch or PR. Releases are versioned in the product repository.
+- Decisions that affect scope or the base template go in the product repository's `DECISIONS.md`. This kit keeps its own [decision record](../DECISIONS.md), whose entries record context, decision, consequences and status.
 
-- the human owner kept every irreversible decision behind explicit approval gates: visibility, licences, deletions, history rewrites and account renaming;
-- AI agents did the inventory, comparisons, scans, edits and reports;
-- ambiguous projects and a branch conflict between two concurrent agent sessions were treated as stop conditions and reported, not guessed or forced;
-- every phase ended with a written handoff report.
+## 10. Human acceptance
 
-## 10. Limits and emerging work
+- Final acceptance belongs to the Coordinator.
+- The Coordinator presents the delivered scope, what is deferred, and the links to the product and portfolio, then records the stakeholder's feedback ([PLAYBOOK](PLAYBOOK.md), step 6).
+- The cycle closes against the playbook checklist: approved briefing, spec and acceptance criteria, a derived repository with the template untouched, implementation and QA, a product README, and the offer and final handoff.
+
+## Limits and emerging work
 
 - This is a methodology and set of templates. It does not launch, schedule or supervise agents, and it measures nothing automatically.
 - No productivity or quality figures are claimed for the method.
