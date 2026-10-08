@@ -121,7 +121,7 @@ Two agent sessions worked on the same repositories concurrently. That is how the
 | Secret scan over all public history: 0 findings | gitleaks 8.21.2, as described in step 7 |
 | Credential text removed from a public README | [sherlock@8543997](https://github.com/lughlammas/sherlock/commit/8543997) |
 | Historical and course repositories preserved, not deleted | 28 public repositories with a last push in 2025 remain |
-| Follow-up: one flagship made easier to verify | [comercial-template product walkthrough](https://github.com/lughlammas/comercial-template/blob/main/docs/PRODUCT_WALKTHROUGH.md): 24 unit tests, a browser smoke test and real local screenshots |
+| Follow-up: one flagship made easier to verify | [comercial-template product walkthrough](https://github.com/lughlammas/comercial-template/blob/main/docs/PRODUCT_WALKTHROUGH.md): 24 unit tests, a browser smoke test and real local screenshots; later a Next.js security patch (16.3.5 → 16.3.8) and a passing [GitHub Actions workflow](https://github.com/lughlammas/comercial-template/actions/workflows/ci.yml) |
 
 ## 6. Deliberately not done
 
@@ -133,7 +133,7 @@ Two agent sessions worked on the same repositories concurrently. That is how the
 
 ## 7. Open items at closure
 
-- Profile bio and pinned repositories can only be changed through the GitHub web UI with the current token, so they remain manual owner actions.
+- Profile bio and pinned repositories could not be changed with the token in use that day, so they remained manual owner actions. The bio was set later, once the token had the `user` scope. Pinned repositories have no public API and still require the GitHub web UI.
 - The stale release branch on the engine repository is still there, since deleting it needs approval, and there is no `v0.4.0` tag yet.
 - Two app repositories still contain a symlink to a machine-local build path.
 - Several public projects have no `LICENSE`, including `sherlock`, `comercial-template` and `tron-o-legado`; adding one is an owner decision.
